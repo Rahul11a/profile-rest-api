@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^xx0gu$6-!z*m&z@ri)q0@mqvhp5j-(_5%ocj9f6fwvxhxc)3y'
+SECRET_KEY = '5e-uk)vxqc#5v*3@8=!tz-oufih&oxsjyf$s8p_**@2i$6&6f!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # New added Functionallity
     'rest_framework',
     'rest_framework.authtoken',
     'profiles_api',
@@ -122,5 +121,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-AUTH_USER_MODEL = 'profiles_api.UserProfile'

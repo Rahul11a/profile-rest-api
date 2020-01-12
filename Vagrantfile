@@ -5,6 +5,9 @@
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
+"""
+Standanrd Configuration Box For alll Vagrant files
+"""
 Vagrant.configure("2") do |config|
  # The most common configuration options are documented and commented below.
  # For a complete reference, please see the online documentation at
@@ -15,9 +18,11 @@ Vagrant.configure("2") do |config|
  config.vm.box = "ubuntu/bionic64"
  config.vm.box_version = "~> 20191107.0.0"
 
+# maps a port from our local machine to the machine on our server. guest::development server, host:: local machine
  config.vm.network "forwarded_port", guest: 8000, host: 8000
 
  config.vm.provision "shell", inline: <<-SHELL
+    #disabling the auto updates
    systemctl disable apt-daily.service
    systemctl disable apt-daily.timer
 
@@ -26,7 +31,7 @@ Vagrant.configure("2") do |config|
    touch /home/vagrant/.bash_aliases
    if ! grep -q PYTHON_ALIAS_ADDED /home/vagrant/.bash_aliases; then
      echo "# PYTHON_ALIAS_ADDED" >> /home/vagrant/.bash_aliases
-     echo "alias python='python3'" >> /home/vagrant/.bash_aliases
+     echo "alias python='python3'" >> /home/vagrant/.bash_aliases # As it has python 2.7 as default
    fi
  SHELL
 end
