@@ -1,11 +1,19 @@
+"""
+Here creation of all the APIs take place.
+"""
 from rest_framework.views import APIView
 from rest_framework.response import Response # When we call the APIView it returns a Standanrd respose object
 from rest_framework import status #list of handy HTTP status codes that can be used when returning responses from api
-from profiles_api import serializers # Direct what to when post, put and patch requests are made
-# This comes from the serializers.py we made
-
+from rest_framework.authentication import TokenAuthentication
 #Import stuff for Viewsets
 from rest_framework import viewsets
+from rest_framework import filters
+#
+from profiles_api import serializers # Direct what to when post, put and patch requests are made
+# This comes from the serializers.py we made
+from profiles_api import models
+from profiles_api import permissions
+
 
 class HelloApiView(APIView):
     """Test API View"""
@@ -96,3 +104,15 @@ class HelloViewSet(viewsets.ViewSet):
     def destroy(self, request, pk=None):
         """Handle removing an object"""
         return Response({'http_method': 'DELETE'})
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating object"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
+    # Django takes care of all the functions like creat, update, etc
+    # just using the ModelViewSet and this query set
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (permissions.UpdateOwnProfile,)
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ('name', 'email',)

@@ -8,6 +8,7 @@ from rest_framework.routers import DefaultRouter
 # First of we register "'/whatever'--> Opens a page with APIs of HelloViewSet" to the router
 router = DefaultRouter()
 router.register('hello-viewset', views.HelloViewSet, base_name='hello_viewset')
+router.register('profile',  views.UserProfileViewSet) # NO need to set base name as the queryset already sets it up accordingly. If we wrte a base name it will override the name set by queryset
 
 
 urlpatterns = [
