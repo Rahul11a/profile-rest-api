@@ -5,12 +5,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response # When we call the APIView it returns a Standanrd respose object
 from rest_framework import status #list of handy HTTP status codes that can be used when returning responses from api
 from rest_framework.authentication import TokenAuthentication
-#Import stuff for Viewsets
 from rest_framework import viewsets
 from rest_framework import filters
-#
-from profiles_api import serializers # Direct what to when post, put and patch requests are made
-# This comes from the serializers.py we made
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.settings import api_settings
+
+from profiles_api import serializers # Direct what to when post, put and patch requests are made. This comes from the serializers.py we made
 from profiles_api import models
 from profiles_api import permissions
 
@@ -116,3 +116,8 @@ class UserProfileViewSet(viewsets.ModelViewSet):
     permission_classes = (permissions.UpdateOwnProfile,)
     filter_backends = (filters.SearchFilter,)
     search_fields = ('name', 'email',)
+
+
+class UserLoginApiView(ObtainAuthToken):
+    """Handle creating user authentication tokens"""
+    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
