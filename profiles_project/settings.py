@@ -28,8 +28,8 @@ DEBUG = bool(int(os.environ.get('DEBUG', 1)))
 # Hence when we run on our local server DEBUG is True
 
 ALLOWED_HOSTS = [
-    'ec2-13-235-247-71.ap-south-1.compute.amazonaws.com'
-    '127.0.0.1'
+    'ec2-13-235-247-71.ap-south-1.compute.amazonaws.com',
+    '127.0.0.1',
 ]
 
 
