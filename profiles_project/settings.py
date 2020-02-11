@@ -27,7 +27,10 @@ DEBUG = bool(int(os.environ.get('DEBUG', 1)))
 # if the debug setting doesn't exist then the default value is 1. That means it will be True
 # Hence when we run on our local server DEBUG is True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'https://raw.githubusercontent.com/Rahul11a/profile-rest-api/master/deploy/setup.sh'
+    '127.0.0.1'
+]
 
 
 # Application definition
